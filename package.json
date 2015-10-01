@@ -19,7 +19,8 @@
   "main": "./core/index",
   "scripts": {
     "start": "node index",
-    "test": "grunt validate --verbose"
+    "test": "grunt validate --verbose",
+    "deploy:production": "ansible-playbook -i deploy/production deploy/deploy.yml --ask-sudo-pass --extra-vars='target=devleague'"
   },
   "engines": {
     "node": "~0.10.0 || ~0.12.0",
