@@ -1,0 +1,13 @@
+---
+project_name: uber-hackathon
+project_user: devleague
+project_root: /home/devleague/apps/uber-hackathon
+project_repo: git@github.com:devleague/uber-hackathon.git
+system_packages:
+  - build-esential
+  - git
+  - nginx
+  - nodejs
+  - npm
+initfiles:
+  - start-sudokrew

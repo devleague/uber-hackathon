@@ -1,0 +1,74 @@
+---
+- hosts: '{{target}}'
+  vars_files:
+    - deploy-vars.yml
+  gather_facts: false
+  user: devleague
+
+  tasks:
+    - name: Create project directory
+      file: state=directory path={{ project_root }}
+      tags: 
+        - provision
+
+    - name: Update project directory
+      file: group={{ project_user }} owner={{ project_user }} mode=755 state=directory path={{ project_root }}
+      tags: 
+        - provision
+
+    - name: Create /var/www directory
+      file: state=directory path=/var/www
+      sudo: true
+      tags: 
+        - provision
+
+    - name: Setup symlink
+      file: src={{ project_root }} dest=/var/www/{{ project_name }} state=link
+      sudo: true
+      tags: 
+        - provision
+
+    - name: Install nginx config file
+      copy: src=files/{{ node_environment }}/{{ project_name }} dest=/etc/nginx/sites-available/{{ project_name }}
+      sudo: true
+      sudo_user: root
+      notify: restart nginx
+      tags: 
+        - provision
+
+    - name: Setup nginx symlink
+      file: src=/etc/nginx/sites-available/{{ project_name }} dest=/etc/nginx/sites-enabled/{{ project_name }} state=link
+      notify: restart nginx
+      sudo: true
+      sudo_user: root
+      tags: 
+        - provision
+
+    - name: Setup init script
+      copy: src=files/{{ node_environment }}/uber-hackathon.init dest=/etc/init.d/{{ project_name }} mode=0751
+      sudo: true
+      sudo_user: root
+      tags: 
+        - provision
+
+    - name: "Pull master from repository"
+      git: repo={{ project_repo }} dest={{ project_root }} version={{ deployment_branch }} accept_hostkey=yes
+      tags: 
+        - deploy
+
+    - name: "Set node environment"
+      shell: "echo $NODE_ENV"
+      environment:
+        NODE_ENV: "{{ node_environment }}"
+
+    - name: Install NPM modules
+      npm: path={{ project_root }} production=yes ignore_scripts=yes
+      tags: 
+        - deploy
+
+    - name: Restart server
+      command: /bin/true
+      notify: restart uber-hackathon 
+
+  handlers:
+    - include: handlers/handlers.yml
