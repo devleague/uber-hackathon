@@ -89,10 +89,10 @@ start() {
       --pidFile $PIDFILE \
       -a \
       -l $LOGFILE \
-      --uid $NAME \
+      --uid "$NAME" \
       --minUptime $MIN_UPTIME \
       --spinSleepTime $SPIN_SLEEP_TIME \
-      start $APPLICATION_PATH 2>&1 > /dev/null &
+      start $APPLICATION_PATH --production 2>&1 > /dev/null &
     RETVAL=$?
 }
 
