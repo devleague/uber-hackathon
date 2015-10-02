@@ -17,9 +17,16 @@ server {
 
     # pass the request to the node.js server with the correct headers and much more can be added, see nginx config options
 
-    location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|pdf|txt|tar|wav|bmp|rtf|js|flv|swf|html|htm|svg)$ {
-         root   /var/www/uber-hackathon/public;
-     }
+#    location ~* ^.+\.(jpg|jpeg|gif|png|ico|css|zip|tgz|gz|rar|bz2|pdf|txt|tar|wav|bmp|rtf|js|flv|swf|html|htm|svg)$ {
+#         root   /var/www/uber-hackathon/public;
+#     }
+
+     location ~ ^/(img/|css/|lib/|vendor/|fonts/|robots.txt|humans.txt) {
+      root /var/www/uber-hackathon/client/assets;
+      access_log off;
+      expires max;
+    }
+ 
 
 
     location / {

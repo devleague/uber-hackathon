@@ -1,11 +1,13 @@
 ---
 - name: restart nginx
-  service: name=nginx state=restarted
+  # service: name=nginx state=restarted
+  command: service nginx restart
   sudo: yes
   sudo_user: devleague
 
 - name: reload nginx
-  service: name=nginx state=reloaded
+  # service: name=nginx state=reloaded
+  command: service nginx restart
   sudo: yes
   sudo_user: devleague
 
