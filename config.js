@@ -24,6 +24,10 @@ config = {
         server: {
             host: '127.0.0.1',
             port: '2369'
+        },
+
+        paths: {
+            contentPath: path.join(__dirname, '/content/themes/devleague/assets/')
         }
     },
 
