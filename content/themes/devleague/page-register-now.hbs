@@ -1,0 +1,65 @@
+{{!< default}}
+
+{{! This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. }}
+
+{{! Everything inside the #post tags pulls data from the page }}
+{{#post}}
+<header class="main-header post-head {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}">
+    <nav class="main-nav {{#if image}}overlay{{/if}} clearfix">
+        {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
+        {{#if @blog.navigation}}
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        {{/if}}
+    </nav>
+</header>
+
+<main class="content" role="main">
+    <article class="{{post_class}}">
+      <h1>Register</h1>
+      <p>Make awesome stuff with Aloha</p>
+      <form id="registration-form" class="plain-list" action="" method="">
+        <ul>
+          <li>
+            <label for="first-name">First Name:
+              <input id="first-name" type="text">
+            </label>
+          </li>
+          <li>
+            <label for="last-name">Last Name:
+              <input id="last-name" type="text">
+            </label>
+          </li>
+          <li>
+            <label for="last-name">Are you over 18?
+              <label for="yes">Yes
+                <input id="yes" name="over-eighteen" value="true" type="radio">
+              </label>
+              <label for="no">No
+                <input id="no" name="over-eighteen" value="false" type="radio">
+              </label>
+            </label>
+          </li>
+          <li>
+            <label for="email-address">Email:
+              <input type="email" name="email">
+            </label>
+          </li>
+          <li>
+            <label for="location">Email:
+              <select name="location" id="location">
+                <option value="oahu">Oahu</option>
+                <option value="maui">Maui</option>
+                <option value="hawaii">Hawaii</option>
+                <option value="kauai">Kauai</option>
+              </select>
+            </label>
+          </li>
+          <li>
+            <input type="button" value="Register now">
+          </li>
+        </ul>
+      </form>
+    </article>
+</main>
+{{/post}}

@@ -1,0 +1,54 @@
+ul.plain-list {
+  list-style-type: none;
+}
+
+ul#sponsors-list {
+  margin-bottom: 0;
+}
+
+ul#sponsors-list li {
+  display: inline-block;
+  vertical-align: top;
+  height: 120px;
+}
+
+ul#sponsors-list li img {
+  display: inline;
+  position: inherit;
+}
+
+ul#sponsors-list li.uber-logo {
+  width: 170px;
+}
+
+ul#sponsors-list li.devleague-logo {
+  /*width: 230px;*/
+  padding-top: 15px;
+  margin-left: 10px;
+}
+
+ul#sponsors-list li.htdc-logo {
+  padding-top: 10px;
+  margin-left: 30px;
+}
+
+ul#sponsors-list li.maui-economic-development-board-logo {
+  padding-left: 70px;
+  margin-top: -35px;
+}
+
+ul#sponsors-list li.uber-logo img {
+  height: 100px;
+}
+
+ul#sponsors-list li.devleague-logo img {
+  height: 50px;
+}
+
+ul#sponsors-list li.htdc-logo img {
+  height: 60px;
+}
+
+ul#sponsors-list li.maui-economic-development-board-logo img {
+  height: 120px;
+}
