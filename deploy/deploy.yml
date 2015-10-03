@@ -73,7 +73,7 @@
       tags: 
         - deploy
 
-    - name: Run grunt init
+    - name: Run grunt prod to build JS
       command: grunt prod
       args:
         chdir: "{{ project_root }}"
