@@ -351,6 +351,10 @@ var _              = require('lodash'),
                     command: 'npm shrinkwrap'
                 },
 
+                dedupe: {
+                    command: 'npm dedupe'
+                },
+
                 csscombfix: {
                     command: path.resolve(cwd + '/node_modules/.bin/csscomb -c core/client/app/styles/csscomb.json -v core/client/app/styles')
                 },
@@ -403,24 +407,10 @@ var _              = require('lodash'),
             // ### grunt-contrib-copy
             // Copy files into their correct locations as part of building assets, or creating release zips
             copy: {
-                jquery: {
-                    cwd: 'core/client/bower_components/jquery/dist/',
-                    src: 'jquery.js',
-                    dest: 'core/built/public/',
-                    expand: true,
-                    nonull: true
-                },
                 release: {
-                    files: [{
-                        cwd: 'core/client/bower_components/jquery/dist/',
-                        src: 'jquery.js',
-                        dest: 'core/built/public/',
-                        expand: true
-                    }, {
-                        expand: true,
-                        src: buildGlob,
-                        dest: '<%= paths.releaseBuild %>/'
-                    }]
+                    expand: true,
+                    src: buildGlob,
+                    dest: '<%= paths.releaseBuild %>/'
                 }
             },
 
@@ -434,27 +424,6 @@ var _              = require('lodash'),
                     expand: true,
                     cwd: '<%= paths.releaseBuild %>/',
                     src: ['**']
-                }
-            },
-
-            // ### grunt-contrib-uglify
-            // Minify concatenated javascript files ready for production
-            uglify: {
-                prod: {
-                    options: {
-                        sourceMap: false
-                    },
-                    files: {
-                        'core/built/public/jquery.min.js': 'core/built/public/jquery.js'
-                    }
-                },
-                release: {
-                    options: {
-                        sourceMap: false
-                    },
-                    files: {
-                        'core/built/public/jquery.min.js': 'core/built/public/jquery.js'
-                    }
                 }
             },
 
@@ -617,7 +586,7 @@ var _              = require('lodash'),
 
         grunt.registerTask('test', function (test) {
             if (!test) {
-                grunt.log.write('no test provided');
+                grunt.fail.fatal('No test provided. `grunt test` expects a filename. e.g.: `grunt test:unit/apps_spec.js`. Did you mean `npm test` or `grunt validate`?');
             }
 
             grunt.task.run('test-setup', 'shell:test:' + test);
@@ -920,7 +889,7 @@ var _              = require('lodash'),
         // ### Basic Asset Building
         // Builds and moves necessary client assets. Prod additionally builds the ember app.
         grunt.registerTask('assets', 'Basic asset building & moving',
-            ['clean:tmp', 'buildAboutPage', 'copy:jquery']);
+            ['clean:tmp', 'buildAboutPage']);
 
         // ### Default asset build
         // `grunt` - default grunt task
@@ -934,7 +903,7 @@ var _              = require('lodash'),
         //
         // It is otherwise the same as running `grunt`, but is only used when running Ghost in the `production` env.
         grunt.registerTask('prod', 'Build JS & templates for production',
-            ['shell:ember:prod', 'uglify:prod', 'master-warn']);
+            ['shell:ember:prod', 'master-warn']);
 
         // ### Live reload
         // `grunt dev` - build assets on the fly whilst developing
@@ -961,7 +930,7 @@ var _              = require('lodash'),
             ' - Copy files to release-folder/#/#{version} directory\n' +
             ' - Clean out unnecessary files (travis, .git*, etc)\n' +
             ' - Zip files in release-folder to dist-folder/#{version} directory',
-            ['init', 'shell:ember:prod', 'uglify:release', 'clean:release',  'shell:shrinkwrap', 'copy:release', 'compress:release']);
+            ['init', 'shell:ember:prod', 'clean:release',  'shell:dedupe', 'shell:shrinkwrap', 'copy:release', 'compress:release']);
     };
 
 module.exports = configureGrunt;

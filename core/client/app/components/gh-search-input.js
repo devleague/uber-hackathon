@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     selection: null,
     content: [],
     isLoading: false,
-    contentExpiry: 60 * 1000,
+    contentExpiry: 10 * 1000,
     contentExpiresAt: false,
 
     posts: Ember.computed.filterBy('content', 'category', 'Posts'),
@@ -78,6 +78,12 @@ export default Ember.Component.extend({
         });
     },
 
+    _keepSelectionClear: Ember.observer('selection', function () {
+        if (this.get('selection') !== null) {
+            this.set('selection', null);
+        }
+    }),
+
     _setKeymasterScope: function () {
         key.setScope('search-input');
     },
@@ -105,7 +111,6 @@ export default Ember.Component.extend({
                 transition = self.get('_routing.router').transitionTo('team.user', selected.id);
             }
 
-            self.set('selection', '');
             transition.then(function () {
                 if (self.get('_selectize').$control_input.is(':focus')) {
                     self._setKeymasterScope();
@@ -117,13 +122,36 @@ export default Ember.Component.extend({
             this.get('_selectize').focus();
         },
 
+        onInit: function () {
+            var selectize = this.get('_selectize'),
+                html = '<div class="dropdown-empty-message">Nothing found&hellip;</div>';
+
+            selectize.$empty_results_container = $(html);
+            selectize.$empty_results_container.hide();
+            selectize.$dropdown.append(selectize.$empty_results_container);
+        },
+
         onFocus: function () {
             this._setKeymasterScope();
             this.refreshContent();
         },
 
         onBlur: function () {
+            var selectize = this.get('_selectize');
+
             this._resetKeymasterScope();
+            selectize.$empty_results_container.hide();
+        },
+
+        onType: function () {
+            var selectize = this.get('_selectize');
+
+            if (!selectize.hasOptions) {
+                selectize.open();
+                selectize.$empty_results_container.show();
+            } else {
+                selectize.$empty_results_container.hide();
+            }
         }
     }
 

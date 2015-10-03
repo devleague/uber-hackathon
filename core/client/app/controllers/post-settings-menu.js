@@ -149,8 +149,8 @@ export default Ember.Controller.extend(SettingsMenuMixin, {
         return placeholder;
     }),
 
-    seoURL: Ember.computed('model.slug', function () {
-        var blogUrl = this.get('config').blogUrl,
+    seoURL: Ember.computed('model.slug', 'config.blogUrl', function () {
+        var blogUrl = this.get('config.blogUrl'),
             seoSlug = this.get('model.slug') ? this.get('model.slug') : '',
             seoURL = blogUrl + '/' + seoSlug;
 
@@ -201,6 +201,10 @@ export default Ember.Controller.extend(SettingsMenuMixin, {
     },
 
     actions: {
+        discardEnter: function () {
+            return false;
+        },
+
         togglePage: function () {
             var self = this;
 

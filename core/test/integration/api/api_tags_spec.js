@@ -128,7 +128,11 @@ describe('Tags API', function () {
     });
 
     describe('Browse', function () {
-        beforeEach(testUtils.setup('tags'));
+        beforeEach(function (done) {
+            testUtils.fixtures.insertMoreTags().then(function () {
+                done();
+            });
+        });
 
         it('can browse (internal)', function (done) {
             TagAPI.browse(testUtils.context.internal).then(function (results) {
@@ -291,6 +295,18 @@ describe('Tags API', function () {
 
                 done();
             }).catch(done);
+        });
+
+        // TODO: this should be a 422?
+        it('cannot fetch a tag with an invalid slug', function (done) {
+            TagAPI.read({slug: 'invalid!'}).then(function () {
+                done(new Error('Should not return a result with invalid slug'));
+            }).catch(function (err) {
+                should.exist(err);
+                err.message.should.eql('Tag not found.');
+
+                done();
+            });
         });
     });
 });
