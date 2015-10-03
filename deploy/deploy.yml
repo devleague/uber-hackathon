@@ -62,7 +62,21 @@
         NODE_ENV: "{{ node_environment }}"
 
     - name: Install NPM modules
-      npm: path={{ project_root }} production=yes ignore_scripts=yes
+      npm: path={{ project_root }} production=no ignore_scripts=yes
+      tags: 
+        - deploy
+
+    - name: Run grunt init
+      command: grunt init --force
+      args:
+        chdir: "{{ project_root }}"
+      tags: 
+        - deploy
+
+    - name: Run grunt init
+      command: grunt prod
+      args:
+        chdir: "{{ project_root }}"
       tags: 
         - deploy
 
