@@ -1,0 +1,17 @@
+---
+- name: restart nginx
+  # service: name=nginx state=restarted
+  command: service nginx restart
+  sudo: yes
+  sudo_user: devleague
+
+- name: reload nginx
+  # service: name=nginx state=reloaded
+  command: service nginx restart
+  sudo: yes
+  sudo_user: devleague
+
+- name: restart uber-hackathon 
+  command: service "{{ project_name }}" restart
+  sudo: yes
+  sudo_user: root
