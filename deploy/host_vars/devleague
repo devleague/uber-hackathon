@@ -3,4 +3,4 @@ deployment_branch: master
 node_environment: production
 ansible_connection: ssh
 ansible_ssh_user: devleague
-ansible_port: 22000
+ansible_ssh_port: 22000
