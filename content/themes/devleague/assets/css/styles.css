@@ -87,6 +87,7 @@ ul#sponsors-list li {
   vertical-align: top;
   height: 120px;
   margin: 10px 30px;
+  width: 170px;
 }
 
 ul#sponsors-list li img {
@@ -95,17 +96,15 @@ ul#sponsors-list li img {
 }
 
 ul#sponsors-list li.uber-logo {
-  width: 170px;
+  
 }
 
 ul#sponsors-list li.livecoding-logo {
   padding-top: 35px;
-  width: 170px;
 }
 
 ul#sponsors-list li.devleague-logo {
   padding-top: 25px;
-  margin-left: 10px;
 }
 
 ul#sponsors-list li.htdc-logo {
@@ -114,7 +113,6 @@ ul#sponsors-list li.htdc-logo {
 }
 
 ul#sponsors-list li.maui-economic-development-board-logo {
-  /*padding-left: 70px;*/
   margin-top: 0px;
 }
 
@@ -132,4 +130,13 @@ ul#sponsors-list li.htdc-logo img {
 
 ul#sponsors-list li.maui-economic-development-board-logo img {
   height: 120px;
+}
+
+ul#sponsors-list li.lesson-underground-logo {
+}
+
+ul#sponsors-list li.ukulele-underground-logo {
+}
+
+ul#sponsors-list li.nalukai-foundation-logo {
 }
