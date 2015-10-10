@@ -78,6 +78,37 @@ ul.plain-list {
   list-style-type: none;
 }
 
+ul#judges-panel {
+  margin-bottom: 0;
+}
+
+ul#judges-panel > li {
+  list-style: none;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px 30px;
+  width: 250px;
+}
+
+ul#judges-panel li div.profile-pic{
+  width: 250px;
+}
+
+ul#judges-panel li div.profile-pic img{
+  width: inherit;
+}
+
+ul#judges-panel li div.profile-name{
+  font-weight: bold;  
+  color: #3D96B9;
+  text-align: center;
+}
+
+ul#judges-panel li div.profile-bio{
+  font-size: 85%  
+}
+
+
 ul#sponsors-list {
   margin-bottom: 0;
 }
