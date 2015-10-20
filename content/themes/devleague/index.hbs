@@ -45,17 +45,14 @@
                 <img src="{{asset 'images/bluestartupslogo.png'}}" alt="bluestartups-logo">
               </li>
             </ul>
-{{!--           <span>
-            <img src="{{asset 'images/htdc.png'}}" alt="htdc-logo">
-          </span>
-          <span>
-            <img src="{{asset 'images/bluestartupslogo.png'}}" alt="bluestartups-logo">
-          </span>
-          <span>
-            
-         <img src="{{asset 'images/logo_frontendmasters.png'}}">
-          </span>
-  --}}      
+            <ul id="sponsors-list" class="plain-list">
+              <li class="cpb-logo">
+                <img src="{{asset 'images/cpb_logo.jpg'}}" alt="cpb-logo">
+              </li>
+              <li class="pcgamerz-logo">
+                <img src="{{asset 'images/pcgamerz.png'}}" alt="pcgamerz-logo">
+              </li>
+            </ul>
          </div>
        </section>
       <section>
@@ -211,7 +208,6 @@
           <li>Cool Dev Stuff</li> 
           <li>Gamer Gear</li> 
           <li>Gift Cards</li>
-          <li>Conference Passes</li>
           <li>...and more.</li>
         </ul>
       </p>
@@ -308,9 +304,20 @@
     <section class="post-content">
         <ul>
           <li>All participants must be at least 18 years of age or older.</li>
+          <li>Teams will consist of 3 to 4 team members.</li>
+          <li>Developers may use any type of API that they would like in their project, but all teams must use the <a href='https://developer.uber.com/' target='_blank'>Uber’s Developer API</a> in their final product.
+          </li>
+          <li>Although some hackathons have specific themes, there are no specific themes for this hackathon (unless you wish to do so)
+          </li>
+          <li>Teams cannot violate Uber's TOS which is provided when they agree to use Uber's API.
+          </li>
+          <li>Developers will be graded on the following criteria: Design, Effective Use of the Uber API, Utility/ Impact, and Originality. Please see attached score sheet.
+          </li>
+          <li>Judges will consist of 2 Uber judges, 2 DevLeague judges, and 2 guest judges
+          </li>
+          </li>
           <li>All participants must attend the event at one of the official venues as listed.</li>
           <li>Participants must build applications during the course of the event.</li>
-          <li>All participants must utilize the <a href='https://developer.uber.com/' target='_blank'>Uber’s Developer API</a>.</li>
           <li>All participants must show aloha to the hosts and facilities.</li>
           <li>All participants must be <b>excellent</b> to each other.</li>
         </ul>
@@ -336,6 +343,9 @@
         </li>
         <li class="bluestartups-logo">
           <img src="{{asset 'images/bluestartupslogo.png'}}" alt="bluestartups-logo">
+        </li>
+        <li class="cpb-logo">
+          <img src="{{asset 'images/cpb_logo.jpg'}}" alt="cpb-logo">
         </li>
         <li class="maui-economic-development-board-logo">
           <img src="{{asset 'images/maui.png'}}" alt="maui-econimic-development-board-logo">
@@ -374,14 +384,10 @@
           <span class="hidden"></span>
           <a href=" href="https://twitter.com/Uber_API"">@Uber_API</a>
         </i>
-{{!--       </p>
-      <p> --}}
         <i class="icon-twitter">
           <span class="hidden"></span>
           <a href="https://twitter.com/devleaguehawaii">@DevLeagueHawaii</a>
         </i>
-{{!--       </p>
-      <p> --}}
         <i class="icon-facebook">
           <span class="hidden"></span>
           <a href="https://www.facebook.com/Dev-League-419352214850086/timeline/">DevLeague on Facebook</a>
@@ -391,6 +397,4 @@
   </article>
     {{! The tag below includes the post loop - partials/loop.hbs }}
     {{!-- {{> "loop"}} --}}
-
-
 </main>
