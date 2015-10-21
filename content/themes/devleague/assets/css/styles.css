@@ -26,6 +26,14 @@ i {
   display: inline-block;
 }
 
+.title-sponsors {
+  text-align: center;
+}
+
+.title-sponsors img {
+  display: inline-block;
+}
+
 .livecoding-large {
   width:100%; 
   text-align: center;
